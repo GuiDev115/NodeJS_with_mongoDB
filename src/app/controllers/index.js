@@ -1,4 +1,5 @@
+import Auth from './Auth';
 import Portifolio from './Portifolio';
-import Auth from "./Auth";
 
-export { Portifolio, Auth };
+
+export { Auth, Portifolio };

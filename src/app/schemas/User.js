@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         lowercase: true
     },
-    passeword: {
+    password: {
         type: String,
         required: true,
         select: false
@@ -23,4 +23,13 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.Model("User", UserSchema);
+UserSchema.pre("save", function(next) {
+    bcrypt.hash(this.password, 10).then(hash => {
+        this.password = hash;
+        next();
+    }).catch(error => {
+        console.error("Error no hasj de senha");
+    });
+});
+
+export default mongoose.model('User', UserSchema);
