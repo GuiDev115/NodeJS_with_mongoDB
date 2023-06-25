@@ -4,6 +4,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import User from "@/app/schemas/User";
 import authConfig from "@/config/Auth"
+import Mailer from "@/app/modules/Mailer";
 
 const router = new Router();
 
@@ -72,7 +73,41 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/forgot-password", (req, res) => {
+    const { email } = req.body;
 
+    User.findOne({ email }).then(user => {
+        if (user) {
+            const token = crypto.randomBytes(20).toString("hex");
+            const expiration = new Date();
+            expiration.setHours(new Date().getHours + 3);
+
+            User.findByIdAndUpdate(user.id, {
+                $set: {
+                    passwordResetToken: token,
+                    passwordResetTokenExpiration: expiration
+                }
+            }).then(() => {
+                Mailer.sendMail({
+                    to: email,
+                    from: "webmaster@testeexpress.com",
+                    template: "auth/forgot_password.html",
+                    context: { token }
+                }, error => {
+                    if (error) {
+                        console.error("Erro ao enviar email", error);
+                        return res.status(400).send({ error: "Fail send recover password mail" });
+                    } else {
+                        return res.send();
+                    }
+                })
+            }).catch(error => {
+                console.error("Erro ao salvar o token de rec de senha", error);
+                return res.status(500).send({ error: "Internal server error" });
+            })
+        } else {
+            return res.status(404).send({ error: "user not found" });
+        }
+    })
 });
 
 router.post("/reset-password", (req, res) => {
