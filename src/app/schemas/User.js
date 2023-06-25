@@ -36,7 +36,7 @@ UserSchema.pre("save", function(next) {
         this.password = hash;
         next();
     }).catch(error => {
-        console.error("Error no hasj de senha");
+        console.error("Error no hash de senha");
     });
 });
 
