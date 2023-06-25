@@ -1,3 +1,3 @@
-import Portfolio from './Portfolio';
+import Portifolio from './Portifolio';
 
-export { Portfolio };
+export { Portifolio };

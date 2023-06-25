@@ -1,14 +1,14 @@
 import mongoose from '@/database';
+import Slugfy from '../../utils/Slugfy';
 
 const ProjectSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     slug: {
         type: String,
-        required: true,
         unique: true,
     },
     description: {
@@ -21,9 +21,15 @@ const ProjectSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 
 });
+
+ProjectSchema.pre("save", function(next) {
+    const title = this.title;
+    this.slug = Slugfy(title);
+    next();
+})
 
 export default mongoose.model('Project', ProjectSchema);
