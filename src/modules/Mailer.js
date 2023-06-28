@@ -10,7 +10,7 @@ const transport = nodemailer.createTransport({
 });
 
 transport.use(
-    "compile",
+    'compile',
     hbs({
         viewEngine: {
             extName: ".hbs",

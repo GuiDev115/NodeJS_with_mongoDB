@@ -4,7 +4,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import User from "@/app/schemas/User";
 import authConfig from "@/config/Auth"
-import Mailer from "@/app/modules/Mailer";
+import Mailer from "@/modules/Mailer";
 
 const router = new Router();
 
@@ -79,18 +79,18 @@ router.post("/forgot-password", (req, res) => {
         if (user) {
             const token = crypto.randomBytes(20).toString("hex");
             const expiration = new Date();
-            expiration.setHours(new Date().getHours + 3);
+            expiration.setHours(new Date().getHours() + 3);
 
             User.findByIdAndUpdate(user.id, {
                 $set: {
                     passwordResetToken: token,
-                    passwordResetTokenExpiration: expiration
+                    passwordResetTokenExpiration: expiration,
                 }
             }).then(() => {
                 Mailer.sendMail({
                     to: email,
                     from: "webmaster@testeexpress.com",
-                    template: "auth/forgot_password.html",
+                    template: "auth/forgot_password",
                     context: { token }
                 }, error => {
                     if (error) {
@@ -102,11 +102,14 @@ router.post("/forgot-password", (req, res) => {
                 })
             }).catch(error => {
                 console.error("Erro ao salvar o token de rec de senha", error);
-                return res.status(500).send({ error: "Internal server error" });
+                return res.status(500).send({ error: "Intedrnal server error" });
             })
         } else {
             return res.status(404).send({ error: "user not found" });
         }
+    }).catch(error => {
+        console.error("erro no forgot password", error);
+        return res.status(500).send({ error: "internal server error" });
     })
 });
 
@@ -118,7 +121,7 @@ router.post("/reset-password", (req, res) => {
         .select("+passwordResetToken passwordResetTokenExpiration")
         .then(user => {
             if (user) {
-                if (token != user.passwordResetToken || new Date.now().now > user.passwordResetTokenExpiration) {
+                if (token != user.passwordResetToken) {
                     return res.status(400).send({ error: "invalid token" })
                 } else {
                     user.passwordResetToken = undefined;
