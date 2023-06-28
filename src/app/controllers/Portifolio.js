@@ -4,18 +4,16 @@ import Slugfy from '../../utils/Slugfy';
 import slugify from 'slugify';
 import AuthMiddleware from '@/app/middlewares/Auth';
 import AdminMiddleware from '@/app/middlewares/Admin';
+import Multer from '@/app/middlewares/Multer';
 
 
 const router = new Router();
 
-//Mostra apenas Titulo e categoria
+//Mostra apenas tudo
 
-/*router.get('/', (req, res) => {
+router.get('/TUDO', (req, res) => {
 
-    Project.find().then(data => {
-        const projects = data.map(project => {
-            return { title: project.title, category: project.category };
-        });
+    Project.find().then(projects => {
         res.send(projects);
     }).catch(error => {
         console.error("Erro ao salvar novo projeto no banco de dados", error);
@@ -25,7 +23,9 @@ const router = new Router();
             });
     })
 
-});*/
+})
+
+//Mostra apenas Titulo, Categoria, Descricao e etc.
 
 router.get('/', (req, res) => {
 
@@ -99,11 +99,11 @@ router.delete('/:projectId', (req, res) => {
     })
 });
 
-/*router.post(
-    '/agenda/featured-image/:projectId', [AuthMiddleware, Multer.single('featuredImage')],
+
+router.post(
+    '/featured-image/:projectId', [AuthMiddleware, Multer.single('featuredImage')],
     (req, res) => {
-        // #swagger.tags = ['Project']
-        // #swagger.description = 'Endpoint para fazer upload da imagem principal.'
+
         const { file } = req;
         if (file) {
             Project.findByIdAndUpdate(
@@ -127,9 +127,8 @@ router.delete('/:projectId', (req, res) => {
         }
     },
 );
-router.post('/agenda/images/:projectId', Multer.array('images'), (req, res) => {
-    // #swagger.tags = ['Project']
-    // #swagger.description = 'Endpoint para adicionar uma ou mais imagens a um projeto pelo seu ID.'
+router.post('/images/:projectId', Multer.array('images'), (req, res) => {
+
     const { files } = req;
 
     if (files && files.length > 0) {
@@ -154,6 +153,6 @@ router.post('/agenda/images/:projectId', Multer.array('images'), (req, res) => {
     } else {
         return res.status(400).send({ error: 'Nenhuma imagem enviada' });
     }
-});*/
+});
 
 export default router;

@@ -4,9 +4,9 @@ import path from 'path';
 
 const router = new Router();
 
-router.get('/Uploads/images/:filename', (req, res) => {
+router.get('/uploads/img/:filename', (req, res) => {
 
-    const filePath = path.resolve(`./uploads/images/${req.params.filename}`);
+    const filePath = path.resolve(`./uploads/img/${req.params.filename}`);
     fs.exists(filePath, (exists) => {
         if (exists) {
             return res.sendFile(filePath);
