@@ -6,6 +6,7 @@ import User from "@/app/schemas/User";
 import authConfig from "@/config/Auth"
 import Mailer from "@/modules/Mailer";
 
+
 const router = new Router();
 
 const generateToken = params => {
@@ -14,20 +15,6 @@ const generateToken = params => {
             expiresIn: 86400,
         });
 };
-
-router.get('/', (req, res) => {
-
-    User.find().then(userData => {
-        res.send(userData);
-    }).catch(error => {
-        console.error("Erro ao salvar novo projeto no banco de dados", error);
-        res.status(400)
-            .send({
-                error: 'Não foi possivel obter os dados do seu projeto. Verifique os dados e tente novamente',
-            });
-    })
-
-})
 
 router.post('/register', (req, res) => {
 

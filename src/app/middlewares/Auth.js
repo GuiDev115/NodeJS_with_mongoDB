@@ -6,7 +6,6 @@ export default (req, res, next) => {
 
     if (authHeader) {
         const tokenData = authHeader.split(" ");
-        ["bearer", "djdsjsjdjs"]
 
         if (tokenData.length !== 2) {
             return res

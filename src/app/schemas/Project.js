@@ -15,6 +15,21 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    priority: {
+        type: Number,
+        required: true,
+    },
+    deadline: {
+        type: String,
+        required: true,
+    },
+    featuredImage: {
+        type: String,
+        required: false,
+    },
+    images: [{
+        type: String,
+    }, ],
     category: {
         type: String,
         required: true,
