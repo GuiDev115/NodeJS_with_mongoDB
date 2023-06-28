@@ -15,6 +15,20 @@ const generateToken = params => {
         });
 };
 
+router.get('/', (req, res) => {
+
+    User.find().then(userData => {
+        res.send(userData);
+    }).catch(error => {
+        console.error("Erro ao salvar novo projeto no banco de dados", error);
+        res.status(400)
+            .send({
+                error: 'Não foi possivel obter os dados do seu projeto. Verifique os dados e tente novamente',
+            });
+    })
+
+})
+
 router.post('/register', (req, res) => {
 
     const { email, name, password } = req.body;
@@ -141,6 +155,16 @@ router.post("/reset-password", (req, res) => {
             }
         })
 
+});
+
+router.delete('/:UserId', (req, res) => {
+
+    User.findByIdAndRemove(req.params.UserId).then(() => {
+        res.send({ message: "Projeto removido com sucesso" });
+    }).catch(error => {
+        console.error("Erro ao remover o projeto", error);
+        res.status(400).sent9({ message: "Erro ao remover o projeto, tente novamente" })
+    })
 });
 
 export default router;
