@@ -71,13 +71,13 @@ Antes de começar, você vai precisar ter instalado em sua máquina o [Node.js](
 # Instale as dependências pedidas (coloquei o projeto com as depedencias, mas sugiro excluir e fazer passo a passo abaixo)
 ~$ sudo npm install
 ~$ npm install swagger-ui-express
-~$ npm insall @types/swagger-ui-express
+~$ npm install @types/swagger-ui-express
 
 
 # Execute a aplicação
 ~$ npm run serve
 
-# Rodando em http://localhost:3333
+# Servidor local: http://localhost:3000
 ```
 
 ## Documentação
