@@ -1,0 +1,385 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Node.js com MongoDB - CRUD funcional e Autenticações",
+        "description": "Essa API tem como objetivo mostrar a funcionalidade de um CRUD em Node.js. Foi usado para a capacitação da empresa Comp Jr.",
+        "termsOfService": "http://localhost:3000/terms",
+        "contact": {
+            "email": "guilherme.fabricio.115@gmail.com"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "servers": [
+        "Main"
+    ],
+    "paths": {
+        "/portifolio/": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para obter todas as tarefas.",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para criar uma nova tarefa.",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "title": {
+                                "example": "any"
+                            },
+                            "slug": {
+                                "example": "any"
+                            },
+                            "description": {
+                                "example": "any"
+                            },
+                            "category": {
+                                "example": "any"
+                            },
+                            "priority": {
+                                "example": "any"
+                            },
+                            "deadline": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/portifolio/{projectTitle}": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para obter uma tarefa pelo título.",
+                "parameters": [{
+                    "name": "projectTitle",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/portifolio/{projectId}": {
+            "put": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para editar uma tarefa.",
+                "parameters": [{
+                        "name": "projectId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "example": "any"
+                                },
+                                "description": {
+                                    "example": "any"
+                                },
+                                "category": {
+                                    "example": "any"
+                                },
+                                "priority": {
+                                    "example": "any"
+                                },
+                                "deadline": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para deletar um usuário.",
+                "parameters": [{
+                    "name": "projectId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/portifolio/featured-image/{projectId}": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para fazer upload da imagem principal.",
+                "parameters": [{
+                    "name": "projectId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/portifolio/images/{projectId}": {
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para adicionar uma ou mais imagens a um projeto pelo seu ID.",
+                "parameters": [{
+                    "name": "projectId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/Auth/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Endpoint para registrar um usuário.",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            },
+                            "name": {
+                                "example": "any"
+                            },
+                            "password": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/Auth/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Endpoint para fazer login.",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            },
+                            "password": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/Auth/forgot-password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Endpoint para fazer requisição de um token de recuperação de senha.",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/Auth/reset-password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Endpoint para trocar a senha.",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "example": "any"
+                            },
+                            "token": {
+                                "example": "any"
+                            },
+                            "newPassword": {
+                                "example": "any"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/Uploads/images/{filename}": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "description": "Endpoint para visualizar as imagens.",
+                "parameters": [{
+                    "name": "filename",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    }
+}

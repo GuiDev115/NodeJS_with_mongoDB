@@ -2,7 +2,9 @@ import express, { Router } from 'express';
 import bodyParser from 'body-parser';
 import { Portifolio, Auth, Upload } from '@/app/controllers';
 import User from './app/schemas/User';
+import swaggerUi from 'swagger-ui-express';
 
+const swaggerFile = require('./swagger.json');
 
 const app = express();
 const port = 3000;
@@ -12,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/portifolio', Portifolio);
 app.use('/auth', Auth);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 function createAdminUser() {
     const name = 'Guilherme';
