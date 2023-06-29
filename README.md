@@ -83,7 +83,6 @@ Antes de começar, você vai precisar ter instalado em sua máquina o [Node.js](
 ## Documentação
 
 ```
-# Acesse
 http://localhost:3000/api-docs
 ```
 
@@ -104,3 +103,10 @@ http://localhost:3000/api-docs
 
   <a href="https://nodejs.org/en/"><img align="center" alt="NodeJS" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" /></a>
   <a href="https://www.mongodb.com/"><img  align="center" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoD"></a>
+
+## Site Usados para o funcionamento do Projeto:
+
+```
+- https://mailtrap.io/
+- https://swagger.io/
+```
