@@ -52,7 +52,7 @@ Desafio desenvolvido para a capacitação de backend da Comp Jr. CRUD simples, e
 │       └── img
 ```
 
-### Pré requisito Para executar o Projeto (PASSO A PASSO PARA .DEB)
+### Pré requisito Para executar o Projeto (PASSO A PASSO PARA S.O DEBIAN)
 
 ```bash
 Antes de começar, você vai precisar ter instalado em sua máquina o [Node.js](https://nodejs.org/).
@@ -80,14 +80,14 @@ Antes de começar, você vai precisar ter instalado em sua máquina o [Node.js](
 # Rodando em http://localhost:3333
 ```
 
-## 📝 Acessando documentação
+## Documentação
 
 ```
 # Acesse
 http://localhost:3000/api-docs
 ```
 
-## ⚡️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 -   Node
 -   MongoDB
