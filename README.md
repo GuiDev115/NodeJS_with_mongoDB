@@ -21,7 +21,7 @@ Desafio desenvolvido para a capacitação de backend da Comp Jr. CRUD simples, e
 ## Para ir além (OPCIONAL)
 
 -   [x] Criar usuário, com e-mail e senha e realizar login;
--   [ ] Mandar imagem com foto do usuário na mesma rota em que ele é criado;
+-   [X] Mandar imagem com foto do usuário na mesma rota em que ele é criado;
 -   [x] Ter uma rota que só pode ser acessado com token de autenticação;
 -   [x] Ter um usuário administrador que terá permissões diferentes de um usuário comum;
 -   [x] Função de recuperar senha;
