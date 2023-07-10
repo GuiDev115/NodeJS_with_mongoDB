@@ -127,6 +127,12 @@ router.post(
         }
     },
 );
+
+router.post("/image", Multer.single("image"), (req, res) => {
+    console.log(req);
+    res.send();
+})
+
 router.post('/images/:projectId', Multer.array('images'), (req, res) => {
 
     const { files } = req;

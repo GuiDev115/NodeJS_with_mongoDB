@@ -21,7 +21,7 @@ export default (req, res, next) => {
                 .json({ error: "No valid token provided" });
         }
 
-        jwt.verify(token, authConfig.secret, (err, decoded) => {
+        jwt.verify(token, AuthConfig.secret, (err, decoded) => {
             if (err) {
                 return res
                     .status(401)
